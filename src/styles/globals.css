@@ -1,0 +1,231 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Zpix - 中文像素字体 */
+@font-face {
+  font-family: "Zpix";
+  src: url("https://cdn.jsdelivr.net/gh/SolidZORO/zpix-pixel-font@master/dist/Zpix.woff2") format("woff2");
+  font-display: swap;
+}
+
+/* ========== 日间模式 - Chrome Dino 风格：干净白底 + 深灰 ========== */
+:root {
+  --pixel-bg: #f7f7f7;
+  --pixel-surface: #ffffff;
+  --pixel-card: #ffffff;
+  --pixel-border: #535353;
+  --pixel-primary: #535353;
+  --pixel-secondary: #757575;
+  --pixel-accent: #535353;
+  --pixel-success: #4a8c5c;
+  --pixel-info: #535353;
+  --pixel-warning: #8c7a3e;
+  --pixel-danger: #ac3535;
+  --pixel-text: #535353;
+  --pixel-muted: #999999;
+  --pixel-dark: #d4d4d4;
+  --pixel-shadow: rgba(83, 83, 83, 0.3);
+}
+
+/* ========== 夜间模式 - 反转：深底 + 浅灰 ========== */
+.dark {
+  --pixel-bg: #1a1a2e;
+  --pixel-surface: #222240;
+  --pixel-card: #2a2a4a;
+  --pixel-border: #a0a0c0;
+  --pixel-primary: #c8c8e0;
+  --pixel-secondary: #9090b0;
+  --pixel-accent: #c8c8e0;
+  --pixel-success: #7bc88a;
+  --pixel-info: #a0a0c0;
+  --pixel-warning: #c8b87a;
+  --pixel-danger: #e07070;
+  --pixel-text: #d8d8e8;
+  --pixel-muted: #8080a0;
+  --pixel-dark: #3a3a5a;
+  --pixel-shadow: rgba(0, 0, 0, 0.4);
+}
+
+@layer base {
+  body {
+    @apply bg-pixel-bg text-pixel-text font-body;
+    font-size: 14px;
+    line-height: 1.8;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { @apply bg-pixel-bg; }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-pixel-dark;
+    border: 2px solid transparent;
+  }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-pixel-border; }
+
+  ::selection { @apply bg-pixel-primary text-pixel-bg; }
+
+  a { @apply text-pixel-text hover:text-pixel-primary; transition: none; }
+}
+
+@layer components {
+  /* ===== 像素卡片 ===== */
+  .pixel-card {
+    @apply bg-pixel-card border-[3px] border-pixel-border shadow-pixel;
+  }
+  .pixel-card:hover {
+    @apply shadow-pixel-hover;
+    transform: translate(-2px, -2px);
+  }
+
+  /* ===== 像素按钮 ===== */
+  .pixel-btn {
+    @apply bg-pixel-primary text-pixel-bg font-pixel text-xs px-4 py-2 border-[3px] border-pixel-border shadow-pixel-sm cursor-pointer select-none;
+    transition: none;
+  }
+  .pixel-btn:hover {
+    @apply bg-pixel-secondary shadow-pixel;
+    transform: translate(-1px, -1px);
+  }
+  .pixel-btn:active {
+    @apply shadow-none;
+    transform: translate(2px, 2px);
+  }
+  .pixel-btn:disabled {
+    @apply opacity-40 cursor-not-allowed;
+  }
+  .pixel-btn-ghost {
+    @apply bg-transparent text-pixel-muted font-pixel text-xs px-3 py-1.5 border-2 border-transparent cursor-pointer;
+    transition: none;
+  }
+  .pixel-btn-ghost:hover {
+    @apply bg-pixel-surface border-pixel-dark text-pixel-text;
+  }
+  .pixel-btn-outline {
+    @apply bg-transparent text-pixel-text font-pixel text-xs px-3 py-1.5 border-[3px] border-pixel-border shadow-pixel-sm cursor-pointer;
+    transition: none;
+  }
+  .pixel-btn-outline:hover {
+    @apply bg-pixel-surface shadow-pixel;
+    transform: translate(-1px, -1px);
+  }
+
+  /* ===== 像素徽章 ===== */
+  .pixel-badge {
+    @apply inline-block px-2 py-0.5 text-[10px] font-pixel border-2 border-pixel-border shadow-pixel-sm;
+  }
+
+  /* ===== 像素输入框 ===== */
+  .pixel-input {
+    @apply bg-pixel-bg border-[3px] border-pixel-border text-pixel-text px-3 py-2 font-body text-sm;
+    outline: none;
+  }
+  .pixel-input:focus {
+    @apply border-pixel-primary;
+    box-shadow: inset 2px 2px 0px 0px var(--pixel-shadow);
+  }
+  .pixel-input::placeholder {
+    @apply text-pixel-muted;
+  }
+
+  /* ===== 像素分割线 ===== */
+  .pixel-divider {
+    @apply border-t-[3px] border-dashed border-pixel-dark my-6;
+  }
+
+  /* ===== 下拉菜单 ===== */
+  .pixel-dropdown {
+    @apply absolute z-50 bg-pixel-card border-[3px] border-pixel-border shadow-pixel min-w-[160px];
+    animation: slideUp 0.2s steps(3) forwards;
+  }
+  .pixel-dropdown-item {
+    @apply block w-full text-left px-3 py-2 text-sm text-pixel-text hover:bg-pixel-bg hover:text-pixel-primary cursor-pointer border-b border-pixel-dark last:border-b-0;
+    transition: none;
+  }
+
+  /* ===== 像素骨架屏 ===== */
+  .pixel-skeleton {
+    @apply bg-pixel-dark border-[2px] border-pixel-border;
+    animation: pixelPulse 1.5s steps(3) infinite;
+  }
+  @keyframes pixelPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+
+  /* ===== 全屏 Loading ===== */
+  .pixel-fullscreen-loader {
+    @apply fixed inset-0 z-[9999] bg-pixel-bg flex flex-col items-center justify-center gap-4;
+  }
+
+  /* ===== 像素旋转 spinner ===== */
+  .pixel-spinner {
+    @apply inline-block w-5 h-5 border-[3px] border-pixel-dark border-t-pixel-primary;
+    animation: pixelSpin 1s steps(8) infinite;
+  }
+  @keyframes pixelSpin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* ===== 文章内容样式 ===== */
+  .pixel-prose {
+    @apply text-pixel-text leading-relaxed;
+  }
+  .pixel-prose h1, .pixel-prose h2, .pixel-prose h3,
+  .pixel-prose h4, .pixel-prose h5, .pixel-prose h6 {
+    @apply font-pixel text-pixel-primary mb-4 mt-8;
+  }
+  .pixel-prose h1 { @apply text-xl; }
+  .pixel-prose h2 { @apply text-lg; }
+  .pixel-prose h3 { @apply text-base; }
+  .pixel-prose p { @apply mb-4; }
+  .pixel-prose a { @apply text-pixel-primary underline; }
+  .pixel-prose a:hover { @apply opacity-70; }
+  .pixel-prose img {
+    @apply border-[3px] border-pixel-border shadow-pixel my-4 max-w-full;
+    image-rendering: auto;
+  }
+  .pixel-prose code {
+    @apply bg-pixel-bg text-pixel-text px-1.5 py-0.5 text-sm font-body border border-pixel-dark;
+  }
+  .pixel-prose pre {
+    @apply bg-pixel-bg border-[3px] border-pixel-border p-4 overflow-x-auto my-4 shadow-pixel;
+  }
+  .pixel-prose pre code {
+    @apply bg-transparent p-0 border-0;
+  }
+  .pixel-prose blockquote {
+    @apply border-l-[4px] border-pixel-primary pl-4 my-4 text-pixel-muted italic bg-pixel-surface py-2 pr-2;
+  }
+  .pixel-prose ul, .pixel-prose ol { @apply pl-6 mb-4; }
+  .pixel-prose li { @apply mb-1; }
+  .pixel-prose ul li::marker { @apply text-pixel-primary; }
+  .pixel-prose table {
+    @apply w-full border-collapse border-[3px] border-pixel-border my-4;
+  }
+  .pixel-prose th {
+    @apply bg-pixel-bg text-pixel-primary font-pixel text-xs p-2 border-[2px] border-pixel-border;
+  }
+  .pixel-prose td { @apply p-2 border-[2px] border-pixel-border; }
+  .pixel-prose hr { @apply border-t-[3px] border-dashed border-pixel-border my-8; }
+
+  /* ===== 闪烁光标 ===== */
+  .pixel-cursor::after {
+    content: "▌";
+    @apply animate-blink text-pixel-primary;
+  }
+
+  /* ===== 动画 ===== */
+  .pixel-animate-in {
+    animation: slideUp 0.3s steps(4) forwards;
+    opacity: 0;
+  }
+  @keyframes slideUp {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+}

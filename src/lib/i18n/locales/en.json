@@ -1,0 +1,76 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "search": "Search",
+    "loading": "Loading",
+    "noData": "No data",
+    "back": "Back",
+    "backToHome": "Back to Home",
+    "clear": "Clear",
+    "sending": "Sending..."
+  },
+  "nav": {
+    "home": "Home",
+    "archive": "Archive",
+    "categories": "Categories",
+    "tags": "Tags",
+    "about": "About",
+    "logout": "Logout",
+    "manage": "Dashboard"
+  },
+  "home": {
+    "welcome": "Welcome to",
+    "subtitle": "A clean and elegant blog system",
+    "noPostsYet": "No posts yet"
+  },
+  "article": {
+    "totalArticles": "Total Articles",
+    "noArticles": "No articles yet",
+    "pinned": "Pinned"
+  },
+  "category": {
+    "totalCategories": "Categories",
+    "noCategories": "No categories yet"
+  },
+  "tag": {
+    "totalTags": "Tags",
+    "noTags": "No tags yet"
+  },
+  "comment": {
+    "title": "Comments",
+    "placeholder": "Write your comment...",
+    "replyPlaceholder": "Write your reply...",
+    "nickname": "Nickname",
+    "emailOptional": "Email (optional)",
+    "submit": "Submit",
+    "reply": "Reply",
+    "noComments": "No comments yet. Be the first!",
+    "contentRequired": "Please enter comment content",
+    "nicknameRequired": "Please enter nickname",
+    "submitSuccess": "Comment submitted",
+    "submitFailed": "Failed to submit comment",
+    "liked": "Liked",
+    "unliked": "Unliked",
+    "likeFailed": "Failed to like",
+    "authorTag": "Author",
+    "postingAsAdmin": "Posting as {name}"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "error": {
+    "notFound": "Page Not Found",
+    "notFoundDesc": "Sorry, the page you're looking for doesn't exist.",
+    "backHome": "Back to Home"
+  },
+  "footer": {
+    "allRightsReserved": "All rights reserved"
+  },
+  "pagination": {
+    "prev": "Prev",
+    "next": "Next",
+    "page": "Page {current} of {total}"
+  }
+}

@@ -1,0 +1,42 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Package
+        run: |
+          mkdir -p release/pixel
+          cp -r dist release/pixel/
+          cp theme.json preview.png release/pixel/
+          cd release && zip -r ../pixel.zip pixel/
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: pixel.zip
+          generate_release_notes: true
