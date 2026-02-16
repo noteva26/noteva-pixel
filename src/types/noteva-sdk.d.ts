@@ -201,6 +201,7 @@ interface NotevaSDK {
   plugins: { register(id: string, plugin: any): void; get(id: string): any; getSettings(pluginId: string): Record<string, any>; saveSettings(pluginId: string, settings: Record<string, any>): Promise<void>; getData(pluginId: string, key: string): Promise<any>; setData(pluginId: string, key: string, value: any): Promise<void> };
   shortcodes: { register(name: string, handler: any): void; render(content: string, context?: any): Promise<string> };
   slots: { register(name: string, content: string | (() => string), priority?: number): void; getContent(name: string): string; render(name: string, container: string | HTMLElement): void; autoRender(): void };
+  emoji: { categories: Array<{ id: string; label: Record<string, string>; icon: string; emojis: Record<string, string> }>; getCategories(locale?: string): Array<{ id: string; label: string; icon: string; emojis: Record<string, string> }>; getMap(): Record<string, string>; loadTwemoji(): Promise<any>; parse(element: HTMLElement, options?: Record<string, any>): Promise<void>; parseSync(element: HTMLElement, options?: Record<string, any>): void; isLoaded(): boolean };
   debug: { enable(): void; disable(): void; logRequests(enabled: boolean): void; logEvents(enabled: boolean): void; logHooks(enabled: boolean): void; mockUser(userData: any): void; mockThemeConfig(config: any): void };
   ready(callback?: () => void): Promise<void>;
 }

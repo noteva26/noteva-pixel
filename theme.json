@@ -2,9 +2,9 @@
   "name": "Pixel Art",
   "short": "pixel",
   "description": "8-bit retro game style blog theme with pixel fonts and nostalgic aesthetics",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Noteva Team",
-  "url": "https://github.com/noteva26/noteva-pixel",
+  "url": "https://github.com/noteva26/noteva-themes",
   "preview": "preview.png",
   "requires": {
     "noteva": ">=0.1.4"

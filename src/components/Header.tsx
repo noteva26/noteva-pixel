@@ -99,14 +99,15 @@ export default function Header() {
 
   const isActive = (href: string) => location.pathname === href;
 
-  /** 获取导航项显示文案：builtin 类型走 i18n 翻译，其他用原始 title */
+  /** 获取导航项显示文案：优先用户自定义标题，未自定义时走 i18n */
   const getNavTitle = (item: NavItem): string => {
+    const customTitle = item.title || item.name || "";
     if (item.nav_type === "builtin") {
       const url = item.target || item.url || "";
       const i18nKey = BUILTIN_I18N[url];
-      if (i18nKey) return t(i18nKey);
+      if (i18nKey && (!customTitle || customTitle === url)) return t(i18nKey);
     }
-    return item.title || item.name || "";
+    return customTitle;
   };
 
   const handleSearch = (e: React.FormEvent) => {
